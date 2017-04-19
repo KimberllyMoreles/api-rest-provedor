@@ -1,0 +1,5 @@
+persistence/PropriedadeDAO.class
+model/Propriedade.class
+model/Produtor.class
+controller/ProdutorAPI.class
+persistence/ProdutorDAO.class
