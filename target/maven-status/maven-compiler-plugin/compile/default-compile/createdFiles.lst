@@ -1,5 +1,5 @@
-persistence/PropriedadeDAO.class
-model/Propriedade.class
-model/Produtor.class
-controller/ProdutorAPI.class
-persistence/ProdutorDAO.class
+model\Produtor.class
+controller\ProdutorAPI.class
+persistence\ProdutorDAO.class
+persistence\PropriedadeDAO.class
+model\Propriedade.class

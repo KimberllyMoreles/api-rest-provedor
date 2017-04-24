@@ -22,6 +22,7 @@ public class Propriedade implements Serializable {
     @Column
     private String longitude;
     
+    @JoinColumn(name="idprodutor", referencedColumnName="id")
     @ManyToOne
     private Produtor produtor;
 

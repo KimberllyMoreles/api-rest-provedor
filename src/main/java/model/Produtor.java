@@ -23,7 +23,8 @@ public class Produtor implements Serializable {
     @Column
     private String data_cadastro;
     
-    @OneToMany
+    
+    @OneToMany(mappedBy="produtor")
     private List<Propriedade> propriedades;
 
     public int getId() {

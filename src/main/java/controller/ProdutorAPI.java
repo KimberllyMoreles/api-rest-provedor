@@ -25,15 +25,16 @@ public class ProdutorAPI {
 
     public ProdutorAPI() throws SQLException {
         produtorDAO = new ProdutorDAO();
+        propriedadeDAO = new PropriedadeDAO();
     }
 
-//    @GET
-//    @Path("/produtor")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Produtor> listarProdutors() {
-//        List<Produtor> produtors = produtorDAO.listar();
-//        return produtors;
-//    }
+    @GET
+    @Path("/produtor")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Produtor> listarProdutores() {
+        List<Produtor> produtores = produtorDAO.listar();
+        return produtores;
+    }
 
     @GET
     @Path("/produtor/{idprodutor}")
@@ -43,12 +44,12 @@ public class ProdutorAPI {
         return produtor;
     }
 
-//    @GET
-//    @Path("/produtor/{idprodutor}/propriedade")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Propriedade> buscarProdutorPropriedades(@DefaultValue("0") @PathParam("idprodutor") int idprodutor) {
-//        return produtorDAO.buscarPorChavePrimaria(idprodutor).getPropriedades();
-//    }
+    @GET
+    @Path("/produtor/{idprodutor}/propriedade")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Propriedade> buscarProdutorPropriedades(@DefaultValue("0") @PathParam("idprodutor") int idprodutor) {
+        return produtorDAO.buscarPorChavePrimaria(idprodutor).getPropriedades();
+    }
 
     @POST
     @Path("/produtor")
@@ -59,18 +60,18 @@ public class ProdutorAPI {
         return produtor;
     }
 
-//    @POST
-//    @Path("/produtor/{idprodutor}/propriedade")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Propriedade inserirProdutorPropriedade(
-//            @DefaultValue("0") @PathParam("idprodutor") int idprodutor,
-//            Propriedade propriedade
-//    ) {
-//        Produtor produtor = produtorDAO.buscarPorChavePrimaria(idprodutor);
-//        propriedade.setProdutor(produtor);
-//        return propriedadeDAO.incluir(propriedade);
-//    }
+    @POST
+    @Path("/produtor/{idprodutor}/propriedade")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Propriedade inserirProdutorPropriedade(
+            @DefaultValue("0") @PathParam("idprodutor") int idprodutor,
+            Propriedade propriedade
+    ) {
+        Produtor produtor = produtorDAO.buscarPorChavePrimaria(idprodutor);
+        propriedade.setProdutor(produtor);
+        return propriedadeDAO.incluir(propriedade, idprodutor);
+    }
 
     @PUT
     @Path("/produtor/{idprodutor}")
@@ -81,17 +82,17 @@ public class ProdutorAPI {
         return produtor;
     }
 
-//    @PUT
-//    @Path("/produtor/{idprodutor}")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Propriedade alterarProdutor(@DefaultValue("0") @PathParam("idprodutor") int idprodutor,
-//            Propriedade propriedade
-//    ) {
-//        Produtor produtor = produtorDAO.buscarPorChavePrimaria(idprodutor);
-//        propriedade.setProdutor(produtor);
-//        return propriedadeDAO.alterar(propriedade);
-//    }
+    @PUT
+    @Path("/produtor/{idprodutor}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Propriedade alterarProdutor(@DefaultValue("0") @PathParam("idprodutor") int idprodutor,
+            Propriedade propriedade
+    ) {
+        Produtor produtor = produtorDAO.buscarPorChavePrimaria(idprodutor);
+        propriedade.setProdutor(produtor);
+        return propriedadeDAO.alterar(propriedade);
+    }
 
     @DELETE
     @Path("/produtor/{idprodutor}")
@@ -100,12 +101,12 @@ public class ProdutorAPI {
         return produtorDAO.excluir(idprodutor);
     }
 
-//    @DELETE
-//    @Path("/produtor/{idprodutor}/propriedade/{idpropriedade}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Boolean excluirProdutorPropriedade(@DefaultValue("0") @PathParam("idprodutor") int idprodutor,
-//            @DefaultValue("0") @PathParam("idpropriedade") int idpropriedade) {
-//        return propriedadeDAO.excluir(idpropriedade);
-//    }
+    @DELETE
+    @Path("/produtor/{idprodutor}/propriedade/{idpropriedade}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Boolean excluirProdutorPropriedade(@DefaultValue("0") @PathParam("idprodutor") int idprodutor,
+            @DefaultValue("0") @PathParam("idpropriedade") int idpropriedade) {
+        return propriedadeDAO.excluir(idpropriedade);
+    }
 
 }
