@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Propriedade.findAll", query = "SELECT c FROM Propriedade c")})
+    @NamedQuery(name = "Propriedade.findAll", query = "SELECT c FROM Propriedade c ")})
 
 public class Propriedade implements Serializable {
 
@@ -22,7 +22,7 @@ public class Propriedade implements Serializable {
     @Column
     private String longitude;
     
-    @JoinColumn(name="idprodutor", referencedColumnName="id")
+    @JoinColumn(name="produtor_id")
     @ManyToOne
     private Produtor produtor;
 

@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Produtor implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     @Column
@@ -22,9 +22,8 @@ public class Produtor implements Serializable {
 
     @Column
     private String data_cadastro;
-    
-    
-    @OneToMany(mappedBy="produtor")
+
+    @OneToMany(mappedBy = "produtor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Propriedade> propriedades;
 
     public int getId() {
@@ -67,5 +66,4 @@ public class Produtor implements Serializable {
         this.propriedades = propriedades;
     }
 
-    
 }

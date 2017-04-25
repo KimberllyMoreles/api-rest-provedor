@@ -26,6 +26,7 @@ public class ProdutorAPI {
     public ProdutorAPI() throws SQLException {
         produtorDAO = new ProdutorDAO();
         propriedadeDAO = new PropriedadeDAO();
+    
     }
 
     @GET
@@ -50,6 +51,14 @@ public class ProdutorAPI {
     public List<Propriedade> buscarProdutorPropriedades(@DefaultValue("0") @PathParam("idprodutor") int idprodutor) {
         return produtorDAO.buscarPorChavePrimaria(idprodutor).getPropriedades();
     }
+    
+    @GET
+    @Path("/produtor/{idprodutor}/propriedade/{idpropriedade}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Propriedade buscarPropriedade(@DefaultValue("0") @PathParam("idprodutor") int idprodutor,
+            @DefaultValue("0") @PathParam("idpropriedade") int idpropriedade) {
+        return propriedadeDAO.buscarPorChavePrimaria(idpropriedade);
+    }
 
     @POST
     @Path("/produtor")
@@ -64,13 +73,10 @@ public class ProdutorAPI {
     @Path("/produtor/{idprodutor}/propriedade")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Propriedade inserirProdutorPropriedade(
-            @DefaultValue("0") @PathParam("idprodutor") int idprodutor,
-            Propriedade propriedade
-    ) {
+    public Propriedade inserirProdutorPropriedade(@DefaultValue("0") @PathParam("idprodutor") int idprodutor, Propriedade propriedade) {
         Produtor produtor = produtorDAO.buscarPorChavePrimaria(idprodutor);
         propriedade.setProdutor(produtor);
-        return propriedadeDAO.incluir(propriedade, idprodutor);
+        return propriedadeDAO.incluir(propriedade);
     }
 
     @PUT
@@ -83,13 +89,15 @@ public class ProdutorAPI {
     }
 
     @PUT
-    @Path("/produtor/{idprodutor}")
+    @Path("/produtor/{idprodutor}/propriedade/{idpropriedade}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Propriedade alterarProdutor(@DefaultValue("0") @PathParam("idprodutor") int idprodutor,
+    public Propriedade alterarPropriedade(@DefaultValue("0") @PathParam("idprodutor") int idprodutor,
+            @DefaultValue("0") @PathParam("idpropriedade") int idpropriedade,
             Propriedade propriedade
     ) {
         Produtor produtor = produtorDAO.buscarPorChavePrimaria(idprodutor);
+        propriedade.setId(idpropriedade);
         propriedade.setProdutor(produtor);
         return propriedadeDAO.alterar(propriedade);
     }
@@ -109,4 +117,8 @@ public class ProdutorAPI {
         return propriedadeDAO.excluir(idpropriedade);
     }
 
+    
+    
+    
 }
+

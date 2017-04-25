@@ -17,9 +17,9 @@ public class PropriedadeDAO {
         this.em = this.emf.createEntityManager();
     }
 
-    public Propriedade incluir(Propriedade propriedade, int idprodutor) {
+    public Propriedade incluir(Propriedade propriedade) {
         try {
-            propriedade.getProdutor().setId(idprodutor);
+            //propriedade.getProdutor().setId(idprodutor);
             em.getTransaction().begin();
             em.persist(propriedade);
             em.getTransaction().commit();
